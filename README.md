@@ -198,13 +198,13 @@ def banner():
    
 
     print(f'''{C}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓''')
-    time.sleep(0.3)
+
     print(f'''{C}┃{E}{J}CH :{G} @N1z1N{C}     ┃{J}Dev: {G} @RJJVJ ~ @FF5UU {C} ┃{J}  CH:{G}@RRRRVP {G}''')
-    time.sleep(0.3)
+
     print(f'''{C}┗{G}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛{G}''')
-    time.sleep(0.3)
+ 
     print(f'''{C}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━''')
-    time.sleep(0.3)
+
     print('\033[1m' ,render('I   x   E' , font='block', colors=['white' , 'red'], align='center', space=True))
     time.sleep(0.3)
     print(f'''{G}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{G}''')
@@ -374,54 +374,56 @@ elif ethan==3:
 	        ))
 	    
 	def INFO(username, jj):
-	    oo = f"-1::{username}"
-	    ee = base64.b64encode(oo.encode('utf-8')).decode('utf-8')
-	    headers = {
-	        'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-	    }
-	    rr = requests.get(f'https://instanavigation.net/api/v1/stories/{ee}', headers=headers).json()
-	    
-	    id = rr['user_info']['id']
-	    usern = rr['user_info']['username']
-	    full = rr['user_info']['full_name']
-	    ip = rr['user_info']['is_private']
-	    iv = rr['user_info']['is_verified']
-	    posts = rr['user_info']['posts']
-	    followers = rr['user_info']['followers']
-	    following = rr['user_info']['following']
-	    date = Instagram.date(id)
-	    rrr = Instagram.rest(username)
-	    
+  
+	    		
 	    try:
-	        ff = f"""
-	┒
-	┃ 𝗡𝗲𝘄 𝗵𝗶𝘁 𝗶𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁
-	┗
-	════════════════
-	⌊ Followers ⌉  :  {followers}
-	⌊ Following ⌉  :  {following}
-	⌊ Username ⌉  :  {username}
-	⌊ Posts ⌉  :  {posts}
-	⌊ Email ⌉  :  {username}@{jj}
-	⌊ Date ⌉  :  {date}
-	⌊ Rest ⌉  :  {rrr}
-	════════════════
-	≣ By @RVVRJ @FF5UU
-	        """
-	        requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
+	    	rest=Instagram.rest(username)
+			
+		
+			    
 	    except:
-	        ff = f"""
+	    	rest='none'
+	    try:
+	    	ab = Instagram.info(username)
+	    	folling=ab.get('following')
+	    	followers = ab.get('followers')
+	    	posts = ab.get('post')  
+	    	date=ab.get('date')
+	    	name=ab.get('name')
+	    	ff = f"""
+	┒
+	┃ 𝗡𝗲𝘄 𝗵𝗶𝘁 𝗶𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁
+	┗
+	════════════════
+	⌊ Username ⌉  :  {username}
+	⌊ Name ⌉   :  {name}
+	⌊ Email ⌉  :  {username}@{jj}
+	⌊ date ⌉   :  {date}
+	⌊ post ⌉   :  {posts}
+	⌊ followers ⌉   :  {followers}
+	⌊ following ⌉   :  {folling}
+	⌊ rest ⌉ :  {rest}
+	════════════════
+	≣ By @FFNZZ 
+	        """
+	        			    	
+	    		    	
+	    	requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
+	    	    
+	    except:
+	    	ff = f"""
 	┒
 	┃ 𝗡𝗲𝘄 𝗵𝗶𝘁 𝗶𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁
 	┗
 	════════════════
 	⌊ Username ⌉  :  {username}
 	⌊ Email ⌉  :  {username}@{jj}
-	⌊ Rest ⌉  :  {rest(username)}
+	⌊ Rest ⌉  :  {rest}
 	════════════════
-	≣ By @RVVRJ @FF5UU
+	≣ By @FFNZZ
 	        """
-	        requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
+	        	    	
+	    	requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
 	while True:
 	    try:
 	        res = gg('https://signup.live.com/signup')
