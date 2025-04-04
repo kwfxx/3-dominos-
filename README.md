@@ -375,22 +375,41 @@ elif ethan==3:
 	    
 	def INFO(username, jj):
   
-	    		
 	    try:
+	    	headers = {
+	    	    'accept': 'application/json, text/plain, */*',
+    'accept-language': 'en-US,en;q=0.9',
+    'content-type': 'application/json',
+    'origin': 'https://storyviewer.com',
+    'priority': 'u=1, i',
+    'referer': 'https://storyviewer.com/',
+    'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+}
+
+	   
+	   
+	    	json_data = {
+    'username': username,}
+    	   
+	   	    	
+	    	response = requests.post('https://storyviewer.com/api/data', headers=headers, json=json_data)
+	    	data = response.json()['user_info']
+	    	username = data.get('username')
+	    	followers = data.get('followers')
+	    	posts = data.get('posts')
+	    	bio = data.get('bio')
+	    	id = data.get('id')
+	    	folling= data.get('following')
+	    	name= data.get('full_name')
+	    	date=Instagram.date(id)
 	    	rest=Instagram.rest(username)
-			
-		
-			    
-	    except:
-	    	rest='none'
-	    try:
-	    	ab = Instagram.info(username)
-	    	folling=ab.get('following')
-	    	followers = ab.get('followers')
-	    	posts = ab.get('post')  
-	    	date=ab.get('date')
-	    	name=ab.get('name')
-	    	ff = f"""
+	    	ff =f"""
 	┒
 	┃ 𝗡𝗲𝘄 𝗵𝗶𝘁 𝗶𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁
 	┗
@@ -406,10 +425,14 @@ elif ethan==3:
 	════════════════
 	≣ By @FFNZZ 
 	        """
-	        			    	
-	    		    	
+	
+	        		
+			   
+	   	    	
 	    	requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
-	    	    
+	  	
+	
+	    
 	    except:
 	    	ff = f"""
 	┒
@@ -422,7 +445,8 @@ elif ethan==3:
 	════════════════
 	≣ By @FFNZZ
 	        """
-	        	    	
+	        		
+		
 	    	requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
 	while True:
 	    try:
