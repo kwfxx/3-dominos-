@@ -376,40 +376,44 @@ elif ethan==3:
 	def INFO(username, jj):
   
 	    try:
+	    	url = f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
 	    	headers = {
-	    	    'accept': 'application/json, text/plain, */*',
-    'accept-language': 'en-US,en;q=0.9',
-    'content-type': 'application/json',
-    'origin': 'https://storyviewer.com',
-    'priority': 'u=1, i',
-    'referer': 'https://storyviewer.com/',
-    'sec-ch-ua': '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-}
+	    	 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "X-IG-App-ID": "936619743392459",
+            "Accept": "*/*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive"
+        }
+		
+			    	
+	    	response = requests.get(url, headers=headers)
+	    	data = response.json()
+	    	user = data['data']['user']
+	    	user_info = {
+	    		            "username": user["username"],
+            "Id":user['id'],
+            "full_name": user["full_name"],
+            "followers": user["edge_followed_by"]["count"],
+            "following": user["edge_follow"]["count"],
+            "posts": user["edge_owner_to_timeline_media"]["count"],
+            "bio": user["biography"],
+            "is_private": user["is_private"],
+            "is_verified": user["is_verified"],
+            "profile_pic_url": user["profile_pic_url"]
+        }
 
-	   
-	   
-	    	json_data = {
-    'username': username,}
-    	   
-	   	    	
-	    	response = requests.post('https://storyviewer.com/api/data', headers=headers, json=json_data)
-	    	data = response.json()['user_info']
-	    	username = data.get('username')
-	    	followers = data.get('followers')
-	    	posts = data.get('posts')
-	    	bio = data.get('bio')
-	    	id = data.get('id')
-	    	folling= data.get('following')
-	    	name= data.get('full_name')
-	    	date=Instagram.date(id)
+			
+	    	Id=user_info['Id']
+	    	post=user_info['posts']
+	    	name=user_info['full_name']
+	    	followers=user_info['followers']
+	    	folling=user_info['following']
+	    	posts=user_info['posts']
+	    	bio=user_info['bio']
+	    	date=Instagram.date(Id)
 	    	rest=Instagram.rest(username)
-	    	ff =f"""
+	    	ff = f"""
 	┒
 	┃ 𝗡𝗲𝘄 𝗵𝗶𝘁 𝗶𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁
 	┗
@@ -418,7 +422,7 @@ elif ethan==3:
 	⌊ Name ⌉   :  {name}
 	⌊ Email ⌉  :  {username}@{jj}
 	⌊ date ⌉   :  {date}
-	⌊ post ⌉   :  {posts}
+	⌊ post ⌉   :  {post}
 	⌊ followers ⌉   :  {followers}
 	⌊ following ⌉   :  {folling}
 	⌊ rest ⌉ :  {rest}
@@ -428,10 +432,9 @@ elif ethan==3:
 	
 	        		
 			   
-	   	    	
+	   		
+			    	
 	    	requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
-	  	
-	
 	    
 	    except:
 	    	ff = f"""
