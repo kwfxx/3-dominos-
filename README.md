@@ -437,6 +437,7 @@ elif ethan==3:
 	    	requests.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={ff}")
 	    
 	    except:
+	    	rest=Instagram.rest(username)
 	    	ff = f"""
 	┒
 	┃ 𝗡𝗲𝘄 𝗵𝗶𝘁 𝗶𝗴 𝗮𝗰𝗰𝗼𝘂𝗻𝘁
@@ -445,6 +446,8 @@ elif ethan==3:
 	⌊ Username ⌉  :  {username}
 	⌊ Email ⌉  :  {username}@{jj}
 	⌊ Rest ⌉  :  {rest}
+	
+	https://www.instagram.com/{username}
 	════════════════
 	≣ By @FFNZZ
 	        """
