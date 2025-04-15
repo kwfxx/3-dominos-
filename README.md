@@ -376,42 +376,12 @@ elif ethan==3:
 	def INFO(username, jj):
   
 	    try:
-	    	url = f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
-	    	headers = {
-	    	 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "X-IG-App-ID": "936619743392459",
-            "Accept": "*/*",
-            "Accept-Language": "en-US,en;q=0.9",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Connection": "keep-alive"
-        }
-		
-			    	
-	    	response = requests.get(url, headers=headers)
-	    	data = response.json()
-	    	user = data['data']['user']
-	    	user_info = {
-	    		            "username": user["username"],
-            "Id":user['id'],
-            "full_name": user["full_name"],
-            "followers": user["edge_followed_by"]["count"],
-            "following": user["edge_follow"]["count"],
-            "posts": user["edge_owner_to_timeline_media"]["count"],
-            "bio": user["biography"],
-            "is_private": user["is_private"],
-            "is_verified": user["is_verified"],
-            "profile_pic_url": user["profile_pic_url"]
-        }
-
-			
-	    	Id=user_info['Id']
-	    	post=user_info['posts']
-	    	name=user_info['full_name']
-	    	followers=user_info['followers']
-	    	folling=user_info['following']
-	    	posts=user_info['posts']
-	    	bio=user_info['bio']
-	    	date=Instagram.date(Id)
+	    	aa=Instagram.info(username)
+	    	name=aa.get('name')
+	    	followers=aa.get('followers')
+	    	folling=aa.get('following')
+	    	post=aa.get('post')
+	    	date=aa.get('date')
 	    	rest=Instagram.rest(username)
 	    	ff = f"""
 	┒
